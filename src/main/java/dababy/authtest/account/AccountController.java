@@ -39,5 +39,14 @@ public class AccountController {
         return "/myPage";
     }
 
+    @PostMapping("/{email}")
+    public String modifyAccount(Model model, @PathVariable String email, AccountRequestDto accountRequestDto) {
+        Account account = accountService.modify(email, accountRequestDto);
+
+        model.addAttribute("account", account);
+
+        return "redirect:/";
+    }
+
 
 }

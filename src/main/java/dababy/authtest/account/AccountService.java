@@ -47,4 +47,21 @@ public class AccountService implements UserDetailsService {
         return accountRepository.save(account);
     }
 
+    public Account modify(String email, AccountRequestDto accountRequestDto) {
+
+        Account account = accountRepository.findByEmail(email);
+
+        if ( account != null ) {
+            account.setUsername(accountRequestDto.username);
+            account.setPassword(accountRequestDto.password);
+            account.setRole(accountRequestDto.role);
+
+            account.encodePassword(passwordEncoder);
+
+            return accountRepository.save(account);
+        } else {
+            return null;
+        }
+
+    }
 }

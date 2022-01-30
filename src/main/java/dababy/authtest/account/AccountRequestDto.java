@@ -1,7 +1,10 @@
 package dababy.authtest.account;
 
 import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 public class AccountRequestDto {
@@ -14,5 +17,6 @@ public class AccountRequestDto {
     public String password;
     @NotNull
     public String role;
+
 
 }
