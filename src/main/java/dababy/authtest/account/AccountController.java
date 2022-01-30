@@ -3,16 +3,15 @@ package dababy.authtest.account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(value = "/account")
 public class AccountController {
 
     @Autowired AccountService accountService;
+
+    @Autowired AccountRepository accountRepository;
 
     @PostMapping("/newAccount")
     public String newAccount(Model model, @ModelAttribute AccountRequestDto accountRequestDto) {
@@ -30,5 +29,15 @@ public class AccountController {
             return null;
         }
     }
+
+    @GetMapping("/{email}")
+    public String findAccount(Model model, @PathVariable String email) {
+        Account account = accountRepository.findByEmail(email);
+
+        model.addAttribute("account", account);
+
+        return "/myPage";
+    }
+
 
 }

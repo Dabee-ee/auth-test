@@ -9,9 +9,34 @@
 <h2 th:text="${message}"> message </h2>
 
 <div th:if="${#authorization.expr('isAuthenticated()')}">
-    <h4 th:text="${#authentication.principal}"> principal </h4>
-    <h4 th:text="${#authentication.authorities}"> authorities </h4>
+    <form th:action="@{/edit}">
+        <table>
+
+            <tr>
+                <th>email</th>
+                <td th:text="${account.email}" id="email"></td>
+            </tr>
+
+            <tr>
+                <th>username</th>
+                <td><input type="text" th:value="${account.username}" id="username"></td>
+            </tr>
+
+            <tr>
+                <th>password</th>
+                <td><input type="password" th:value="${account.password}" id="password"></td>
+            </tr>
+
+            <tr>
+                <th>role</th>
+                <td><input type="text" th:value="${account.role}" id="role"></td>
+            </tr>
+        </table>
+    </form>
 </div>
+
+<a th:href="@{/editInfo}">edit info</a>
+<a th:href="@{/}">home</a>
 
 </body>
 </html>
