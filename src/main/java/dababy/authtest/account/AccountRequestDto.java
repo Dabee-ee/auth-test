@@ -7,6 +7,8 @@ import lombok.Data;
 public class AccountRequestDto {
 
     @NotNull
+    public String email;
+    @NotNull
     public String username;
     @NotNull
     public String password;

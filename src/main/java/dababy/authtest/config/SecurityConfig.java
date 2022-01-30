@@ -16,7 +16,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().authenticated();
 
-        http.formLogin();
+        http.formLogin()
+                .usernameParameter("email");
+//                .permitAll();
+
         http.httpBasic();
     }
 }

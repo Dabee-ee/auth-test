@@ -3,6 +3,7 @@ package dababy.authtest.account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,12 +24,10 @@ public class AccountController {
             if ( account != null ) {
                 model.addAttribute("title", "success");
                 model.addAttribute("message", "successfully created account.");
-                model.addAttribute("username", account.getUsername());
+                model.addAttribute("username", "Thank you," + account.getUsername());
                 return "/success";
             }
-
             return null;
-
         }
     }
 

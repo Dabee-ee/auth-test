@@ -54,6 +54,13 @@ public class CommonController {
         return "/admin";
     }
 
+    @GetMapping("/myPage")
+    public String myPage(Model model, Principal principal) {
+        model.addAttribute("title", "my page");
+        model.addAttribute("message", principal.getName() + " 's information. ");
+
+        return "/myPage";
+    }
 
 
 }

@@ -10,7 +10,7 @@
 
 <div th:if="${#authorization.expr('isAuthenticated()')}">
     <h3 th:text="${#authentication.name}"> name </h3>
-    <h3 th:text="${#authentication.authorities}"> ? </h3>
+    <a th:href="@{/myPage}"> my page</a>
     <a th:href="@{/logout}"> logout </a>
 </div>
 

@@ -14,6 +14,8 @@ public class Account {
     public Integer id;
 
     @Column(unique = true)
+    public String email;
+
     public String username;
 
     public String password;
@@ -50,6 +52,14 @@ public class Account {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void encodePassword(PasswordEncoder passwordEncoder) {

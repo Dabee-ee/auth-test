@@ -17,16 +17,17 @@ public class AccountService implements UserDetailsService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Account account = accountRepository.findByUsername(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Account account = accountRepository.findByEmail(email);
 
         if ( account == null ) {
-            throw new UsernameNotFoundException(username);
+            throw new UsernameNotFoundException("Invalid email of password. Please check, " + email);
         }
 
         return User.builder()
-                .username(account.getUsername())
+                .username(account.getEmail())
                 .password(account.getPassword())
                 .roles(account.getRole())
                 .build();
@@ -36,6 +37,7 @@ public class AccountService implements UserDetailsService {
     public Account save(AccountRequestDto accountRequestDto) {
         Account account = new Account();
 
+        account.setEmail(accountRequestDto.email);
         account.setUsername(accountRequestDto.username);
         account.setPassword(accountRequestDto.password);
         account.setRole(accountRequestDto.role);

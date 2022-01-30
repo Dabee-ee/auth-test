@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Title</title>
+</head>
+<body>
+
+<h2 th:text="${message}"> message </h2>
+
+<div th:if="${#authorization.expr('isAuthenticated()')}">
+    <h4 th:text="${#authentication.principal}"> principal </h4>
+    <h4 th:text="${#authentication.authorities}"> authorities </h4>
+</div>
+
+</body>
+</html>
