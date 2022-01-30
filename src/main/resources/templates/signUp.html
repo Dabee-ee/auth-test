@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Title</title>
+</head>
+<body>
+
+<h2 th:text="${message}"> Hello </h2>
+
+<div th:if="${#authorization.expr('isAuthenticated()')}">
+    <a href="/"> back </a>
+</div>
+
+<div th:unless="${#authorization.expr('isAuthenticated()')}">
+    <form th:action="@{/account/newAccount}" th:method="post">
+        <table>
+            <tr>
+                <th>name</th>
+                <td><input type="text" id="username" name="username"></td>
+            </tr>
+
+            <tr>
+                <th>password</th>
+                <td><input type="password" id="password" name="password"></td>
+            </tr>
+
+            <tr>
+                <th>role</th>
+                <td><input type="text" id="role" name="role"></td>
+            </tr>
+        </table>
+
+        <button type="submit">submit</button>
+        <button type="cancel">cancel</button>
+    </form>
+</div>
+
+
+</body>
+</html>
