@@ -5,6 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping(value = "/account")
 public class AccountController {
@@ -49,8 +52,12 @@ public class AccountController {
     }
 
     @GetMapping("/delete/{email}")
-    public String deleteAccount(Model model, @PathVariable String email) {
+    public String deleteAccount(HttpServletRequest request, Model model, @PathVariable String email) {
         accountService.delete(email);
+
+        HttpSession session = request.getSession();
+        session.invalidate();
+
         return "redirect:/";
     }
 
