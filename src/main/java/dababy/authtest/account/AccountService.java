@@ -64,4 +64,9 @@ public class AccountService implements UserDetailsService {
         }
 
     }
+
+    public void delete(String email) {
+        Account account = accountRepository.findByEmail(email);
+        accountRepository.delete(account);
+    }
 }

@@ -48,5 +48,11 @@ public class AccountController {
         return "redirect:/";
     }
 
+    @GetMapping("/delete/{email}")
+    public String deleteAccount(Model model, @PathVariable String email) {
+        accountService.delete(email);
+        return "redirect:/";
+    }
+
 
 }
